@@ -2,7 +2,7 @@ namespace CalculatorDesktopApplication
 {
     public partial class Calculator : Form
     {
-        double resValue=0;
+        double resValue = 0;
 
         string operationPerformed = "";
         string operand = "";
@@ -12,7 +12,7 @@ namespace CalculatorDesktopApplication
             InitializeComponent();
         }
 
-       
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -29,13 +29,13 @@ namespace CalculatorDesktopApplication
             CalcDisplay.Clear();
         }
 
-        
+
         private void CalcDisplay_TextChanged(object sender, EventArgs e)
         {
         }
 
-       
-        
+
+
         private void btn_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -48,27 +48,22 @@ namespace CalculatorDesktopApplication
             }
             else
                 CalcDisplay.Text += button.Text;
-
         }
 
         private void oper_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (resValue!=0)
+            if (resValue != 0)
             {
-                btnEquals.PerformClick();
-                
+
                 operationPerformed = button.Text;
 
                 resValue = double.Parse(CalcDisplay.Text);
                 //CalcDisplay.Clear();
+                btnEquals.PerformClick();
 
-                operand = resValue + " " + operationPerformed;
-                labelOper.Text = operand;
                 operationPerformedIs = true;
-            }
-            else
-            {
+            } else {
                 operationPerformed = button.Text;
                 resValue = double.Parse(CalcDisplay.Text);
                 operand = resValue + " " + operationPerformed;
@@ -76,41 +71,103 @@ namespace CalculatorDesktopApplication
 
                 operationPerformedIs = true;
             }
+            CalcDisplay.Text = "0";
         }
 
         private void btn_Convert(object sender, EventArgs e)
         {
-
         }
+
+
+        //        if (((int)e.KeyChar >= 48 && (int)e.KeyChar <= 57)(int)e.KeyChar == 46) {
+        //        if (displayType == "DEC")
+        //        {
+        //            if (CalcDisplay.Text == "0" && (int)e.KeyChar == 46)
+        //            {
+        //                CalcDisplay.Text = "0.";
+        //            }
+        //            else
+        //            {
+        //                if ((int)e.KeyChar == 46 && !CalcDisplay.Text.Contains("."))
+        //                {
+        //                    CalcDisplay.Text += e.KeyChar;
+        //                }
+        //                else if ((int)e.KeyChar != 46)
+        //                {
+        //                    if (CalcDisplay.Text == "0")
+        //                    {
+        //                        CalcDisplay.Text = e.KeyChar.ToString();
+        //                    }
+        //                    else
+        //                    {
+        //                        CalcDisplay.Text += e.KeyChar;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    if ((int)e.KeyChar == 42
+        //         (int)e.KeyChar == 43
+        //         (int)e.KeyChar == 45
+        //         (int)e.KeyChar == 46
+        //    ) {
+        //        if (displayType == "DEC")
+        //        {
+        //            if (e.KeyChar.ToString() != storedOperation && storedOperation != "")
+        //            {
+        //                storedOperation = e.KeyChar.ToString();
+        //            }
+
+        //            if (storedOperation != "" && storedOperand != "" && textBox1.Text != "0")
+        //            {
+        //                storedOperand = Calculate(storedOperand, storedOperation, textBox1.Text).ToString();
+        //                CalcDisplay.Text = storedOperand;
+        //            }
+
+        //            storedOperand = textBox1.Text;
+        //            storedOperation = e.KeyChar.ToString();
+
+        //            label1.Text = $"{storedOperand} {storedOperation}";
+
+        //            textBox1.Text = "0";
+        //        }
+        //    }
+        //}
+
+
 
         private void btn_equals(object sender, EventArgs e)
         {
             operationPerformedIs = false;
 
-            if (CalcDisplay.Text!="")
+            if (CalcDisplay.Text != "")
             {
                 switch (operationPerformed)
                 {
                     case "+":
                         CalcDisplay.Text = (resValue + double.Parse(CalcDisplay.Text)).ToString();
+                        labelOper.Text = CalcDisplay.Text + " " + operationPerformed;
                         break;
                     case "-":
                         CalcDisplay.Text = (resValue - double.Parse(CalcDisplay.Text)).ToString();
+                        labelOper.Text = CalcDisplay.Text + " " + operationPerformed;
                         break;
                     case "/":
                         CalcDisplay.Text = (resValue / double.Parse(CalcDisplay.Text)).ToString();
+                        labelOper.Text = CalcDisplay.Text + " " + operationPerformed;
                         break;
                     case "*":
                         CalcDisplay.Text = (resValue * double.Parse(CalcDisplay.Text)).ToString();
+                        labelOper.Text = CalcDisplay.Text + " " + operationPerformed;
                         break;
                     default:
                         break;
                 }
 
             }
-            
-
         }
+
         private void labeloper(object sender, EventArgs e)
         {
 
@@ -140,6 +197,55 @@ namespace CalculatorDesktopApplication
             labelOper.Text = "";
         }
 
-        
+        private void Calculator_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((int)e.KeyChar >= 48 && (int)e.KeyChar <= 57) || (int)e.KeyChar == 46) {
+                if (CalcDisplay.Text == "0" && (int)e.KeyChar == 46)
+                {
+                    CalcDisplay.Text = "0.";
+                }
+                else
+                {
+                    if ((int)e.KeyChar == 46 && !CalcDisplay.Text.Contains("."))
+                    {
+                        CalcDisplay.Text += e.KeyChar;
+                    }
+                    else if ((int)e.KeyChar != 46)
+                    {
+                        if (CalcDisplay.Text == "0")
+                        {
+                            CalcDisplay.Text = e.KeyChar.ToString();
+                        }
+                        else
+                        {
+                            CalcDisplay.Text += e.KeyChar;
+                        }
+                    }
+                }
+            }
+
+            if ((int)e.KeyChar == 42 ||
+                 (int)e.KeyChar == 43 ||
+                 (int)e.KeyChar == 45 ||
+                 (int)e.KeyChar == 46
+                ) {
+                if (e.KeyChar.ToString() != operationPerformed && operationPerformed != "")
+                {
+                    operationPerformed = e.KeyChar.ToString();
+                }
+
+                if (operationPerformed != "" && operand != "" && CalcDisplay.Text != "0")
+                {
+                }
+
+                operand = CalcDisplay.Text;
+                operationPerformed = e.KeyChar.ToString();
+
+                label1.Text = $"{operand} {operationPerformed}";
+
+                CalcDisplay.Text = "0";
+            }
+       
+    }
     }
 }
