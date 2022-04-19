@@ -77,6 +77,7 @@ namespace CalculatorDesktopApplication
 
         private void btn_Convert(object sender, EventArgs e)
         {
+            
         }
 
 
@@ -192,5 +193,12 @@ namespace CalculatorDesktopApplication
             }
        
     }
+
+        private void btn_Convert_Dec(object sender, EventArgs e) {
+            CalcDisplay.Text = Convert.ToInt32(CalcDisplay.Text, 2).ToString();
+        }
+
+        private void btn_Convert_Bin(object sender, EventArgs e) {
+        }
     }
 }

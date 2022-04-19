@@ -346,7 +346,7 @@
             this.BtnBin.TabIndex = 1;
             this.BtnBin.Text = "Bin";
             this.BtnBin.UseVisualStyleBackColor = true;
-            this.BtnBin.Click += new System.EventHandler(this.btn_Convert);
+            this.BtnBin.Click += new System.EventHandler(this.btn_Convert_Bin);
             // 
             // btnDec
             // 
@@ -357,7 +357,7 @@
             this.btnDec.TabIndex = 0;
             this.btnDec.Text = "Dec";
             this.btnDec.UseVisualStyleBackColor = true;
-            this.btnDec.Click += new System.EventHandler(this.btn_Convert);
+            this.btnDec.Click += new System.EventHandler(this.btn_Convert_Dec);
             // 
             // tableLayoutPanel1
             // 
