@@ -41,12 +41,13 @@ namespace CalculatorDesktopApplication
             Button button = (Button)sender;
             if (CalcDisplay.Text == "0" || (operationPerformedIs))
                 CalcDisplay.Clear();
+
             operationPerformedIs = false;
+            
             if (button.Text == ".") {
                 if (!CalcDisplay.Text.Contains("."))
                     CalcDisplay.Text += button.Text;
-            }
-            else
+            } else
                 CalcDisplay.Text += button.Text;
         }
 
@@ -58,9 +59,9 @@ namespace CalculatorDesktopApplication
 
                 operationPerformed = button.Text;
 
+                btnEquals.PerformClick();
                 resValue = double.Parse(CalcDisplay.Text);
                 //CalcDisplay.Clear();
-                btnEquals.PerformClick();
 
                 operationPerformedIs = true;
             } else {
@@ -78,62 +79,6 @@ namespace CalculatorDesktopApplication
         {
         }
 
-
-        //        if (((int)e.KeyChar >= 48 && (int)e.KeyChar <= 57)(int)e.KeyChar == 46) {
-        //        if (displayType == "DEC")
-        //        {
-        //            if (CalcDisplay.Text == "0" && (int)e.KeyChar == 46)
-        //            {
-        //                CalcDisplay.Text = "0.";
-        //            }
-        //            else
-        //            {
-        //                if ((int)e.KeyChar == 46 && !CalcDisplay.Text.Contains("."))
-        //                {
-        //                    CalcDisplay.Text += e.KeyChar;
-        //                }
-        //                else if ((int)e.KeyChar != 46)
-        //                {
-        //                    if (CalcDisplay.Text == "0")
-        //                    {
-        //                        CalcDisplay.Text = e.KeyChar.ToString();
-        //                    }
-        //                    else
-        //                    {
-        //                        CalcDisplay.Text += e.KeyChar;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    if ((int)e.KeyChar == 42
-        //         (int)e.KeyChar == 43
-        //         (int)e.KeyChar == 45
-        //         (int)e.KeyChar == 46
-        //    ) {
-        //        if (displayType == "DEC")
-        //        {
-        //            if (e.KeyChar.ToString() != storedOperation && storedOperation != "")
-        //            {
-        //                storedOperation = e.KeyChar.ToString();
-        //            }
-
-        //            if (storedOperation != "" && storedOperand != "" && textBox1.Text != "0")
-        //            {
-        //                storedOperand = Calculate(storedOperand, storedOperation, textBox1.Text).ToString();
-        //                CalcDisplay.Text = storedOperand;
-        //            }
-
-        //            storedOperand = textBox1.Text;
-        //            storedOperation = e.KeyChar.ToString();
-
-        //            label1.Text = $"{storedOperand} {storedOperation}";
-
-        //            textBox1.Text = "0";
-        //        }
-        //    }
-        //}
 
 
 
