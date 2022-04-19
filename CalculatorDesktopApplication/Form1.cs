@@ -199,6 +199,29 @@ namespace CalculatorDesktopApplication
         }
 
         private void btn_Convert_Bin(object sender, EventArgs e) {
+            try
+            {
+                string sum = "";
+                int n, i;
+                int[] a = new int[100];
+
+                n = int.Parse(CalcDisplay.Text);
+                for (i = 0; n > 0; i++)
+                {
+                    a[i] = n % 2;
+                    n = n / 2;
+                }
+
+                for (i = i - 1; i >= 0; i--)
+                {
+                    sum = sum + a[i].ToString();
+                }
+                CalcDisplay.Text = sum;
+            }
+            catch
+            {
+                CalcDisplay.Text = "Error";
+            }
         }
     }
 }
